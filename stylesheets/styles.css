@@ -1,0 +1,313 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Fira Sans', sans-serif;
+  letter-spacing: 0.02rem;
+}
+
+.fleft {
+  float: left;
+}
+
+.fright {
+  float: right;
+}
+
+.clearfix:after {
+  content: '';
+  clear: both;
+}
+
+.header {
+  height: 90px;
+  background-color: #F56E44;
+  box-shadow: 0 2px 14px 0 #EA5C30;
+  position: absolute;
+  width: 100%;
+  padding: 0 80px;
+}
+
+.header__logo {
+  float: left;
+  height: 100%;
+  width: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header__logo__img {
+  height: 26px;
+}
+
+.header__nav {
+  float: right;
+  height: 100%;
+  overflow: hidden;
+}
+
+.header__nav__link {
+  font-size: 18px;
+  position: relative;
+  font-weight: 500;
+  color: #fff;
+  padding: 32px 15px 0;
+  margin-left: 25px;
+  height: 100%;
+  float: left;
+}
+
+.header__nav__link:after {
+  content: '';
+  position: absolute;
+  width: calc(100% - 30px);
+  height: 6px;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: translateY(10px);
+  border-radius: 15px 15px 0 0;
+  transition: transform 0.15s ease-out;
+}
+
+.header__nav__link.active:after,
+.header__nav__link:hover:after {
+  transform: translateY(0);
+}
+
+.banner {
+  height: 1050px;
+  background: radial-gradient(circle, #FF794F 0%, #F16134 100%);
+  padding: 90px 80px 0;
+}
+
+.banner__content__heading {
+  font-size: 54px;
+  color: #fff;
+}
+
+.banner__content {
+  max-width: 550px;
+  margin-top: 220px;
+  width: 50%;
+}
+
+.banner__content__heading__subTitle {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.banner__content__text {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 30px;
+  padding-top: 30px;
+}
+
+.banner__image {
+  width: calc(50% - 150px);
+  height: 500px;
+  margin: 120px 110px 0 0;
+}
+
+.banner__image__img {
+  width: 100%;
+}
+.activities {
+  background: #BC2B5E;
+  padding: 0 80px;
+}
+
+.safety {
+  background: #BC2B5E;
+}
+
+.activityBox {
+  height: 780px;
+  width: 100%;
+  transform: translateY(-150px);
+}
+
+.activityBox__content {
+  height: calc(100% - 180px);
+  background: #fff;
+}
+
+.activityBox__heading {
+  height: 150px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 30px 30px 0 0;
+  background: #fff;
+}
+
+.activityBox__heading__nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  bottom: 22px;
+  position: absolute;
+  width: 100%;
+  z-index: 9;
+}
+
+.activityBox__heading:before {
+  content: '';
+  position: absolute;
+  top: -53px;
+  height: 140px;
+  border-radius: 50%;
+  width: calc(100% - 10px);
+  background: #fff;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+}
+
+.activityBox__heading__title {
+  text-align: center;
+  color: #BC2B5E;
+  font-size: 36px;
+  font-weight: bold;
+  position: relative;
+  z-index: 9;
+  top: -10px;
+}
+
+.activityBox__heading__nav__link {
+  line-height: 32px;
+  height: 40px;
+  padding: 0 20px;
+  border: 1px solid #E8E8E8;
+  border-radius: 30px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.activityBox__heading__nav__link.active,
+.activityBox__heading__nav__link:hover {
+  background: linear-gradient(180deg, #BC2B5E 0%, #DF3571 0%, #BC2B5E 100%);
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+.activityBox__content__list {
+  width: 250px;
+  height: 100%;
+  padding-top: 30px;
+  overflow: auto;
+}
+
+.activityBox__content__description {
+  width: calc(100% - 250px);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  height: 100%;
+}
+
+.activityBox__content__list__nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.activityBox__content__list__nav__link {
+  height: 42px;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  padding-left: 60px;
+  color: #4C4C4C;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+  transition: color 0.1s ease-out;
+}
+
+.activityBox__content__list__nav__link:hover,
+.activityBox__content__list__nav__link.active {
+  color: #C92F65;
+  font-weight: 600;
+}
+
+.activityBox__content__list__nav__link.active:before {
+  content: '';
+  background: url('./../images/kidztopiaa-nav.svg') no-repeat center center;
+  background-size: contain;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  left: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.activityBox__content__description__content {
+  width: calc(100% - 560px);
+}
+
+.activityBox__content__description__gallery {
+  width: 500px;
+  height: 100%;
+}
+
+.activityBox__content__description__gallery__image {
+  height: 400px;
+  margin-top: 35px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.activityBox__content__description__content__title {
+  font-size: 23px;
+  color: rgba(0, 0, 0, 0.8);
+  height: 42px;
+  font-weight: 600;
+}
+
+.activityBox__content__description__content__text {
+  font-size: 16px;
+  color: #4C4C4C;
+  line-height: 29px;
+  font-weight: 400;
+}
+
+.activityBox__content__description__gallery__nav {
+  display: flex;
+  margin-top: 20px;
+}
+
+.activityBox__content__description__gallery__nav__link {
+  height: 65px;
+  width: 85px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-left: 17px;
+}
+
+.activityBox__content__description__gallery__nav__link:first-child {
+  margin-left: 0;
+}
