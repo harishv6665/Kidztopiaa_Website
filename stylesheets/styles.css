@@ -9,6 +9,8 @@ body {
   font-weight: 400;
   font-family: 'Fira Sans', sans-serif;
   letter-spacing: 0.02rem;
+  min-width: 1200px;
+  overflow: auto;
 }
 
 button {
@@ -43,6 +45,7 @@ ul {
   box-shadow: 0 2px 14px 0 #EA5C30;
   position: absolute;
   width: 100%;
+  min-width: 1200px;
   padding: 0 80px;
 }
 
@@ -97,7 +100,7 @@ ul {
 }
 
 .banner {
-  height: 1050px;
+  height: 1000px;
   background: radial-gradient(circle, #FF794F 0%, #F16134 100%);
   padding: 90px 80px 0;
 }
@@ -154,6 +157,7 @@ ul {
 .activityBox__content {
   height: calc(100% - 150px);
   background: #fff;
+  border-radius: 0 0 20px 20px;
 }
 
 .activityBox__heading {
@@ -274,6 +278,7 @@ ul {
 
 .activityBox__content__description__content {
   width: calc(100% - 560px);
+  height: 100%;
 }
 
 .activityBox__content__description__gallery {
@@ -300,6 +305,8 @@ ul {
   color: #4C4C4C;
   line-height: 29px;
   font-weight: 400;
+  height: calc(100% - 42px);
+  overflow: auto;
 }
 
 .activityBox__content__description__gallery__nav {
@@ -343,13 +350,14 @@ ul {
 .safety__bannerImg__img {
   width: 100%;
   position: relative;
-  right: 50px;
+  /* right: 50px; */
 }
 
 .safety__content__list__card {
   border-radius: 20px;
   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.24);
-  width: 340px;
+  width: calc((100% / 2) - 15px);
+  max-width: 340px;
   background-color: #FFFFFF;
   height: 145px;
   flex-shrink: 0;
@@ -374,6 +382,7 @@ ul {
 
 .safety__content__list__card__icon__img {
   width: 100%;
+  height: 100%;
 }
 
 .safety__content__list__card__text {
@@ -413,7 +422,7 @@ ul {
 }
 
 .pricing__content {
-  width: calc(100% - 500px);
+  width: calc(100% - 530px);
   max-width: 550px;
 }
 
@@ -516,7 +525,8 @@ ul {
 
 .pricing-membership__list__card {
   height: 370px;
-  width: 290px;
+  width: calc(100% / 4 - 20px);
+  max-width: 290px;
   background-color: #FFFFFF;
   border-radius: 20px;
   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.24);
@@ -529,7 +539,7 @@ ul {
 
 .contact {
   background: #BC2B5E;
-  padding: 350px 80px 100px;
+  padding: 350px 80px 120px;
 }
 
 .pricing-membership__list__card__title {
@@ -574,6 +584,7 @@ ul {
   height: 500px;
   border-radius: 20px;
   display: flex;
+  overflow: hidden;
 }
 
 .contact__card__col1 {
@@ -583,15 +594,21 @@ ul {
 }
 
 .contact__card__col2 {
-  width: 250px;
+  width: 290px;
   height: 100%;
+  padding-right: 40px;
 }
 
 .contact__card__col__content {padding-top: 130px;color: rgba(0, 0, 0, 0.8);}
 
 .contact__card__col3 {
   width: calc(100% - 300px - 250px);
-  height: 100px;
+  height: 100%;
+}
+
+.contact__card__col__map {
+  width: 100%;
+  height: 100%;
 }
 
 .contact__card__col__title {
@@ -656,6 +673,24 @@ ul {
 }
 
 .footer {
-  height: 100px;
+  height: 70px;
   background: #be275d;
+  padding: 0 80px;
+}
+
+.footer__contact__icon {
+  float: left;
+  width: 30px;
+  height: 30px;
+}
+
+.footer__contact__icon__img {
+  width: 100%;
+}
+
+.footer__contact__text {
+  font-size: 22px;
+  color: #fff;
+  padding-left: 20px;
+  font-weight: 500;
 }

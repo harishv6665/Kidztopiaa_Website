@@ -21,15 +21,15 @@
       />
     </a>
     <nav class='header__nav'>
-      <a href='#' class='header__nav__link active'>Home</a>
-      <a href='#' class='header__nav__link'>Exhibits</a>
-      <a href='#' class='header__nav__link'>Pricing and Timing</a>
-      <a href='#' class='header__nav__link'>Contact us</a>
+      <a href='#home' class='header__nav__link active'>Home</a>
+      <a href='#exhibits' class='header__nav__link'>Exhibits</a>
+      <a href='#pricing' class='header__nav__link'>Pricing and Timing</a>
+      <a href='#contact' class='header__nav__link'>Contact us</a>
       <!--<a href='#' class='header__nav__link'>Gallery</a>-->
     </nav>
   </header>
 
-  <section class='banner clearfix'>
+  <section id="home" class='banner clearfix'>
 
     <div class='banner__content fleft'>
       <h1 class='banner__content__heading'>
@@ -54,7 +54,7 @@
   </section>
 
   <section class='activities'>
-    <div class='activityBox'>
+    <div id="exhibits" class='activityBox'>
 
       <div class='activityBox__heading'>
         <h1 class='activityBox__heading__title'>Exhibits</h1>
@@ -164,7 +164,7 @@
 
   </section>
 
-  <section class='pricing'>
+  <section id='pricing' class='pricing'>
 
     <div class='pricing-primary clearfix'>
 
@@ -312,8 +312,9 @@
     </div>
 
   </section>
+
   <section class='contact'>
-    <div class='contact__card'>
+    <div id='contact' class='contact__card'>
 
       <div class='contact__card__col1'>
         <h1 class='contact__card__col__title'>Contact Us</h1>
@@ -336,36 +337,145 @@
           <h4 class='contact__card__col__content__text__email'>info@sample.com</h4>
           <nav class='contact__card__col__content__social'>
             <a href='#' class='contact__card__col__content__social__link'>
-              <img class='contact__card__col__content__social__link__img' src='./images/icons/kidztopiaa-fb-ico.svg' alt=''>
+              <img class='contact__card__col__content__social__link__img' src='./images/icons/kidztopiaa-fb-ico.svg'
+                   alt=''>
             </a>
             <a href='#' class='contact__card__col__content__social__link'>
-              <img class='contact__card__col__content__social__link__img' src='./images/icons/kidztopiaa-insta-ico.svg' alt=''>
+              <img class='contact__card__col__content__social__link__img' src='./images/icons/kidztopiaa-insta-ico.svg'
+                   alt=''>
             </a>
             <a href='#' class='contact__card__col__content__social__link'>
-              <img class='contact__card__col__content__social__link__img' src='./images/icons/kidztopiaa-twitter-ico.svg' alt=''>
+              <img class='contact__card__col__content__social__link__img'
+                   src='./images/icons/kidztopiaa-twitter-ico.svg' alt=''>
             </a>
             <a href='#' class='contact__card__col__content__social__link'>
-              <img class='contact__card__col__content__social__link__img' src='./images/icons/kidztopiaa-youtube-ico.png' alt=''>
+              <img class='contact__card__col__content__social__link__img'
+                   src='./images/icons/kidztopiaa-youtube-ico.png' alt=''>
             </a>
           </nav>
         </div>
       </div>
 
       <div class='contact__card__col3'>
-        <div class='contact__card__col__map'></div>
+        <div class='contact__card__col__map' id="map"></div>
       </div>
 
     </div>
   </section>
 
   <footer class='footer clearfix'>
-    <a href='#' class='footer__logo fleft'></a>
+    <a href='#' class='footer__logo fleft'>
+      <img class='footer__logo__img' src='./images/Kidztopiaa-logo.svg' alt='Kidztopiaa logo'>
+    </a>
     <h4 class='footer__contact fright'>
-      <span class='footer__contact__icon'></span>
+      <span class='footer__contact__icon'>
+        <img class='footer__contact__icon__img' src='./images/icons/kidztopiaa-telephone-ico.svg'
+             alt='Kidztopiaa contact'>
+      </span>
       <span class='footer__contact__text'>+91 9900 123 123</span>
     </h4>
   </footer>
 
 </div>
+<!--
+            You need to include this script tag on any page that has a Google Map.
+
+            The following script tag will work when opening this example locally on your computer.
+            But if you use this on a localhost server or a live website you will need to include an API key.
+            Sign up for one here (it's free for small usage):
+                https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+
+            After you sign up, use the following script tag with YOUR_GOOGLE_API_KEY replaced with your actual key.
+        -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyviAZn_iGElFKVUlF9dAXYTo1CdvPePU&callback=initMap" async
+        defer></script>
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyviAZn_iGElFKVUlF9dAXYTo1CdvPePU&callback=initMap"-->
+        type="text/javascript"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript">
+  // When the window has finished loading create our google map below
+  google.maps.event.addDomListener(window, 'load', init);
+
+  function init() {
+    // Basic options for a simple Google Map
+    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+    var mapOptions = {
+      // How zoomed in you want the map to start at (always required)
+      zoom: 11,
+
+      // The latitude and longitude to center the map (always required)
+      center: new google.maps.LatLng(40.6700, -73.9400), // New York
+
+      // How you would like to style the map.
+      // This is where you would paste any style found on Snazzy Maps.
+      styles: [
+        {
+          'featureType': 'water',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#e9e9e9' }, { 'lightness': 17 }],
+        }, {
+          'featureType': 'landscape',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#f5f5f5' }, { 'lightness': 20 }],
+        }, {
+          'featureType': 'road.highway',
+          'elementType': 'geometry.fill',
+          'stylers': [{ 'color': '#ffffff' }, { 'lightness': 17 }],
+        }, {
+          'featureType': 'road.highway',
+          'elementType': 'geometry.stroke',
+          'stylers': [{ 'color': '#ffffff' }, { 'lightness': 29 }, { 'weight': 0.2 }],
+        }, {
+          'featureType': 'road.arterial',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#ffffff' }, { 'lightness': 18 }],
+        }, {
+          'featureType': 'road.local',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#ffffff' }, { 'lightness': 16 }],
+        }, {
+          'featureType': 'poi',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#f5f5f5' }, { 'lightness': 21 }],
+        }, {
+          'featureType': 'poi.park',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#dedede' }, { 'lightness': 21 }],
+        }, {
+          'elementType': 'labels.text.stroke',
+          'stylers': [{ 'visibility': 'on' }, { 'color': '#ffffff' }, { 'lightness': 16 }],
+        }, {
+          'elementType': 'labels.text.fill',
+          'stylers': [{ 'saturation': 36 }, { 'color': '#333333' }, { 'lightness': 40 }],
+        }, { 'elementType': 'labels.icon', 'stylers': [{ 'visibility': 'off' }] }, {
+          'featureType': 'transit',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#f2f2f2' }, { 'lightness': 19 }],
+        }, {
+          'featureType': 'administrative',
+          'elementType': 'geometry.fill',
+          'stylers': [{ 'color': '#fefefe' }, { 'lightness': 20 }],
+        }, {
+          'featureType': 'administrative',
+          'elementType': 'geometry.stroke',
+          'stylers': [{ 'color': '#fefefe' }, { 'lightness': 17 }, { 'weight': 1.2 }],
+        }],
+    };
+
+    // Get the HTML DOM element that will contain your map
+    // We are using a div with id="map" seen below in the <body>
+    var mapElement = document.getElementById('map');
+
+    // Create the Google Map using our element and options defined above
+    var map = new google.maps.Map(mapElement, mapOptions);
+
+    // Let's also add a marker while we're at it
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(40.6700, -73.9400),
+      map: map,
+      title: 'Snazzy!',
+    });
+  }
+</script>
 </body>
 </html>
