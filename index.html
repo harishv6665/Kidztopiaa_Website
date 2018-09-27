@@ -8,8 +8,9 @@
   <title>Kidztopiaa</title>
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,800" rel="stylesheet">
   <link rel='stylesheet' href='./stylesheets/styles.css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
-<body>
+<body ng-app="myApp" ng-controller="myCtrl">
 <div class='pageWrapper'>
 
   <header class='header'>
@@ -20,6 +21,7 @@
         alt='Kidztopiaa'
       />
     </a>
+    <span>{{firstName + " " + lastName}}</span>
     <nav class='header__nav'>
       <a href='#home' class='header__nav__link active'>Home</a>
       <a href='#exhibits' class='header__nav__link'>Exhibits</a>
@@ -38,8 +40,9 @@
         Kidztopiaa!
       </h1>
       <p class='banner__content__text'>
-        Play is how children learn best! At kidztopiaa play is fun and educational, with innovative hands on exhibits,
-        programs and larger-than-life movies.
+        KIDZTOPIAA is an interactive city made for children 1-16 that combines inspiration, fun and learning through realistic role-play. Kids can independently explore a scaled city of over 20000 square feet with more than 100 exciting careers that they can try.
+        <br><br>
+        Fueled by a child’s natural desire to create, explore and collaborate, KIDZTOPIAA is equal parts entertainment and learning, making it one of the most progressive family entertainment concepts today.
       </p>
     </div>
 
@@ -59,12 +62,13 @@
       <div class='activityBox__heading'>
         <h1 class='activityBox__heading__title'>Exhibits</h1>
         <nav class='activityBox__heading__nav'>
-          <a href='#' class='activityBox__heading__nav__link active'>Role play</a>
-          <a href='#' class='activityBox__heading__nav__link'>Soft play</a>
-          <a href='#' class='activityBox__heading__nav__link'>Toddler play</a>
-          <a href='#' class='activityBox__heading__nav__link'>Light Exhibits</a>
-          <a href='#' class='activityBox__heading__nav__link'>Create Yourself</a>
-          <a href='#' class='activityBox__heading__nav__link'>Electric Magnetic Science</a>
+          <a
+            ng-repeat="exhibit in exhibits"
+            ng-click="activeExhibit = exhibit.key"
+            class='activityBox__heading__nav__link'
+            ng-class="{'active': exhibit.key === activeExhibit}">
+            {{exhibit.name}}
+          </a>
         </nav>
       </div>
 
@@ -72,19 +76,13 @@
 
         <div class='activityBox__content__list fleft'>
           <nav class='activityBox__content__list__nav'>
-            <a href='#' class='activityBox__content__list__nav__link'>Police Station</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Post Office</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Gym Room</a>
-            <a href='#' class='activityBox__content__list__nav__link active'>Fire Station</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Hospital</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Burger</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Burger Making</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Library</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Dance Floor</a>
-            <a href='#' class='activityBox__content__list__nav__link'>FM Station</a>
-            <a href='#' class='activityBox__content__list__nav__link'>News Room</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Bank</a>
-            <a href='#' class='activityBox__content__list__nav__link'>Pottery Room</a>
+            <a
+              ng-repeat="activity in getActivityList(activeExhibit).activities"
+              ng-click="activeActivity = activity.key"
+              class='activityBox__content__list__nav__link'
+              ng-class="{'active': activity.key === activeActivity}">
+              {{activity.name}}
+            </a>
           </nav>
         </div>
 
@@ -92,22 +90,18 @@
           <div class='activityBox__content__description__content fleft'>
             <h2 class='activityBox__content__description__content__title'>Fire Station</h2>
             <p class='activityBox__content__description__content__text'>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam culpa distinctio fugit ipsam
-              perferendis possimus quidem voluptatibus. Amet assumenda consectetur doloribus id ipsa minus, quam quidem
-              quod tempora unde.
-              <br><br>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias amet animi aspernatur aut delectus
-              ducimus, earum eligendi error excepturi molestias nesciunt non, numquam perspiciatis qui quidem
-              reprehenderit saepe voluptas. Alias!
+              {{exhibitData[activeActivity].description}}
             </p>
           </div>
           <div class='activityBox__content__description__gallery fright'>
-            <div class='activityBox__content__description__gallery__image'></div>
+            <div
+              ng-style='{"background-image": "url("getActiveSliderImageUrl()")"}'
+              class='activityBox__content__description__gallery__image'></div>
             <nav class='activityBox__content__description__gallery__nav'>
-              <a href='#' class='activityBox__content__description__gallery__nav__link'></a>
-              <a href='#' class='activityBox__content__description__gallery__nav__link'></a>
-              <a href='#' class='activityBox__content__description__gallery__nav__link'></a>
-              <a href='#' class='activityBox__content__description__gallery__nav__link'></a>
+              <a
+                ng-repeat="image in exhibitData[activeActivity].images"
+                ng-style='getSliderImage(image)'
+                class='activityBox__content__description__gallery__nav__link'></a>
             </nav>
           </div>
         </div>
@@ -377,6 +371,7 @@
   </footer>
 
 </div>
+<script src='scripts/app.js'></script>
 <!--
             You need to include this script tag on any page that has a Google Map.
 
