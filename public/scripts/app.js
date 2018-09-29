@@ -336,7 +336,9 @@ app.controller('myCtrl', function($scope) {
       parentKey: 'e001',
       name: 'Gym Room',
       title: 'Gym Room',
-      description: 'Gym',
+      description: 'Why not for  kids ? \n' +
+      'Come to kidztopiaa and test your fitness with fun . \n' +
+      'Show your strength with dumbles to your parents.',
       images: [
         {
           directoryKey: 'GymRoom',
@@ -474,7 +476,9 @@ app.controller('myCtrl', function($scope) {
       parentKey: 'e001',
       name: 'Bank',
       title: 'Bank',
-      description: 'Bank',
+      description: 'Experience the bank . \n' +
+      'Kidz can open an account . Deposit the cheque and count the cash. \n' +
+      'And can get an financial knowledge.',
       images: [
         {
           directoryKey: 'Bank',
