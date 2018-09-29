@@ -1,18 +1,489 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kidztopiaa Bangalore Children's Museum</title>
-    <link rel="stylesheet" href="./stylesheets/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <meta name="keywords" content="Kidztopiaa, bangalore, kids play area near me, children museum, kids play, kids games, games for kids, 5 minute crafts for kids, kids adda, kids care, learning, kids activity, play area">
+  <meta name="description" content="KIDZTOPIAA is an interactive city made for children 1-16 that combines inspiration, fun and learning through realistic role-play. Kids can independently explore a scaled city of over 20000 square feet with more than 100 exciting careers that they can try.">
+  <title>Kidztopiaa</title>
+  <link rel="icon" href="./images/favicon.png" type="image/png" sizes="16x16">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,800" rel="stylesheet">
+  <link rel='stylesheet' href='./stylesheets/styles.css'>
+  <script src="./scripts/angular.min.js"></script>
 </head>
-<body>
-    <div class="wrapper">
-        <div class="banner-img"></div>
-        <h2 class="banner-text">Opening Shortly!</h2>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class='pageWrapper'>
+
+  <header class='header'>
+    <a href='#' class='header__logo'>
+      <img
+        class='header__logo__img'
+        src='./images/Kidztopiaa-logo.svg'
+        alt='Kidztopiaa'
+      />
+    </a>
+    <span>{{firstName + " " + lastName}}</span>
+    <nav class='header__nav'>
+      <a href='#home' class='header__nav__link active'>Home</a>
+      <a href='#exhibits' class='header__nav__link'>Exhibits</a>
+      <a href='#pricing' class='header__nav__link'>Pricing and Timing</a>
+      <a href='#contact' class='header__nav__link'>Contact us</a>
+      <!--<a href='#' class='header__nav__link'>Gallery</a>-->
+    </nav>
+  </header>
+
+  <section id="home" class='banner clearfix'>
+
+    <div class='banner__content fleft'>
+      <h1 class='banner__content__heading'>
+        <span class='banner__content__heading__subTitle'>Welcome to</span>
+        <br>
+        Kidztopiaa!
+      </h1>
+      <p class='banner__content__text'>
+        KIDZTOPIAA is an interactive city made for children 1-16 that combines inspiration, fun and learning through realistic role-play. Kids can independently explore a scaled city of over 20000 square feet with more than 100 exciting careers that they can try.
+        <br><br>
+        Fueled by a child’s natural desire to create, explore and collaborate, KIDZTOPIAA is equal parts entertainment and learning, making it one of the most progressive family entertainment concepts today.
+      </p>
     </div>
+
+    <div class='banner__image fright'>
+      <img
+        class='banner__image__img'
+        src='./images/kidztopiaa-banner.svg'
+        alt='Welcome to Kidztopiaa!'
+      />
+    </div>
+
+  </section>
+
+  <section class='activities'>
+    <div id="exhibits" class='activityBox'>
+
+      <div class='activityBox__heading'>
+        <h1 class='activityBox__heading__title'>Exhibits</h1>
+        <nav class='activityBox__heading__nav'>
+          <a
+            ng-repeat="exhibit in exhibits"
+            ng-click="setActiveExhibit(exhibit.key)"
+            class='activityBox__heading__nav__link'
+            ng-class="{'active': exhibit.key == activeExhibit}">
+            {{exhibit.name}}
+          </a>
+        </nav>
+      </div>
+
+      <div class='activityBox__content clearfix'>
+
+        <div class='activityBox__content__list fleft'>
+          <nav class='activityBox__content__list__nav'>
+            <a
+              ng-repeat="activity in getActivityList(activeExhibit).activities"
+              ng-click="setActiveActivity(activity.key)"
+              class='activityBox__content__list__nav__link'
+              ng-class="{'active': activity.key == activeActivity}">
+              {{activity.name}}
+            </a>
+          </nav>
+        </div>
+
+        <div class='activityBox__content__description fright clearfix'>
+          <div class='activityBox__content__description__content fleft'>
+            <h2 class='activityBox__content__description__content__title'>
+              {{exhibitData[activeActivity].name}}
+            </h2>
+            <p class='activityBox__content__description__content__text'>
+              {{exhibitData[activeActivity].description}}
+            </p>
+          </div>
+          <div class='activityBox__content__description__gallery fright'>
+            <div
+              ng-model='activeSliderImage'
+              ng-style='{"background-image": "url(" + baseSliderPath + "/" + exhibitData[activeActivity].images[0].directoryKey + "/" + activeSliderImage + ")"}'
+              class='activityBox__content__description__gallery__image'></div>
+            <nav class='activityBox__content__description__gallery__nav'>
+              <a
+                ng-repeat="image in exhibitData[activeActivity].images"
+                ng-style='getSliderImage(image)'
+                class='activityBox__content__description__gallery__nav__link'
+                ng-class="{'active': activeSliderImage == image.imageFile}"
+                ng-click="setActiveSliderImage(image.imageFile)"></a>
+            </nav>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class='safety clearfix'>
+
+    <div class='safety__content fleft'>
+      <h1 class='safety__content__heading'>Safety and Security</h1>
+      <div class='safety__content__list'>
+
+        <div class='safety__content__list__card'>
+          <div class='safety__content__list__card__icon'>
+            <img class='safety__content__list__card__icon__img' src='./images/icons/kidztopiaa-lady-staff-ico.svg'
+                 alt='Kidztopiaa ladies staff'>
+          </div>
+          <h4 class='safety__content__list__card__text'>All exhibits are managed by Lady staffs</h4>
+        </div>
+
+        <div class='safety__content__list__card'>
+          <div class='safety__content__list__card__icon'>
+            <img class='safety__content__list__card__icon__img' src='./images/icons/kidztopiaa-cctv-ico.svg'
+                 alt='Kidztopiaa ladies staff'>
+          </div>
+          <h4 class='safety__content__list__card__text'>Complete arena is watched by our CCTV minions</h4>
+        </div>
+
+        <div class='safety__content__list__card'>
+          <div class='safety__content__list__card__icon'>
+            <img class='safety__content__list__card__icon__img' src='./images/icons/kidztopiaa-mat-ico.svg'
+                 alt='Kidztopiaa ladies staff'>
+          </div>
+          <h4 class='safety__content__list__card__text'>Complete arena is covered byEVM mats</h4>
+        </div>
+
+        <div class='safety__content__list__card'>
+          <div class='safety__content__list__card__icon'>
+            <img class='safety__content__list__card__icon__img' src='./images/icons/kidztopiaa-parents-ico.svg'
+                 alt='Kidztopiaa ladies staff'>
+          </div>
+          <h4 class='safety__content__list__card__text'>Children's are allowed only with the parents</h4>
+        </div>
+
+      </div>
+    </div>
+
+    <div class='safety__bannerImg fright'>
+      <img class='safety__bannerImg__img' src='./images/kidztopiaa-safety.svg' alt='Kidztopiaa safety'>
+    </div>
+
+  </section>
+
+  <section id='pricing' class='pricing'>
+
+    <div class='pricing-primary clearfix'>
+
+      <div class='pricing__content fleft'>
+        <h1 class='pricing__content__heading'>Pricing & Timing</h1>
+        <p class='pricing__content__text'>Play is how children learn best! At kidztopiaa play is fun and educational,
+          with innovative hands on exhibits, programs and larger-than-life movies.</p>
+        <div class='pricing__content__bannerImg'>
+          <img class='pricing__content__bannerImg__img' src='./images/kidztopiaa-pricing.svg' alt=''>
+        </div>
+      </div>
+
+      <div class='pricing__info fright'>
+
+        <div class='pricing__info__card'>
+          <h3 class='pricing__info__card__title'>Children</h3>
+          <div class='pricing__info__card__icon'>
+            <img class='pricing__info__card__icon__img' src='./images/icons/kidztopiaa-children-ico.svg'
+                 alt='Kidztopiaa parents'>
+          </div>
+          <h4 class='pricing__info__card__text'>₹<span>850</span>/day</h4>
+        </div>
+
+        <div class='pricing__info__card'>
+          <h3 class='pricing__info__card__title'>Adults</h3>
+          <div class='pricing__info__card__icon'>
+            <img class='pricing__info__card__icon__img' src='./images/icons/kidztopiaa-parents-ico.svg'
+                 alt='Kidztopiaa parents'>
+          </div>
+          <h4 class='pricing__info__card__text'>₹<span>150</span>/day</h4>
+        </div>
+
+        <div class='pricing__info__card large'>
+
+          <div class='pricing__info__card__col1'>
+            <h3 class='pricing__info__card__title'>Opening hours</h3>
+            <div class='pricing__info__card--large__icon'>
+              <img class='pricing__info__card--large__icon__img' src='./images/icons/kidztopiaa-clock-ico.svg' alt=''>
+            </div>
+          </div>
+
+          <div class='pricing__info__card__col2'>
+            <ul class='pricing__info__card__col__list'>
+
+              <li class='pricing__info__card__col__list__item'>
+                <span class='pricing__info__card__col__list__text'>Monday</span>
+                <span class='pricing__info__card__col__list__text'>11AM - 8PM</span>
+              </li>
+
+              <li class='pricing__info__card__col__list__item'>
+                <span class='pricing__info__card__col__list__text'>Tuesday</span>
+                <span class='pricing__info__card__col__list__text'>11AM - 8PM</span>
+              </li>
+
+              <li class='pricing__info__card__col__list__item'>
+                <span class='pricing__info__card__col__list__text'>Wednesday</span>
+                <span class='pricing__info__card__col__list__text'>11AM - 8PM</span>
+              </li>
+
+              <li class='pricing__info__card__col__list__item'>
+                <span class='pricing__info__card__col__list__text'>Thursday</span>
+                <span class='pricing__info__card__col__list__text'>11AM - 8PM</span>
+              </li>
+
+              <li class='pricing__info__card__col__list__item'>
+                <span class='pricing__info__card__col__list__text'>Friday</span>
+                <span class='pricing__info__card__col__list__text'>11AM - 8PM</span>
+              </li>
+
+              <li class='pricing__info__card__col__list__item'>
+                <span class='pricing__info__card__col__list__text'>Saturday</span>
+                <span class='pricing__info__card__col__list__text'>11AM - 8PM</span>
+              </li>
+
+              <li class='pricing__info__card__col__list__item'>
+                <span class='pricing__info__card__col__list__text'>Sunday</span>
+                <span class='pricing__info__card__col__list__text'>11AM - 8PM</span>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class='pricing-group-booking' style='display: none'>
+      <div class='pricing-group-booking__content'>
+        <h2 class='pricing-group-booking__content__title'>Group ordering</h2>
+        <p class='pricing-group-booking__content__text'></p>
+      </div>
+      <div class='pricing-group-booking__image'>
+        <img class='booking__image__img' src='./images/' alt='Kidztopiaa group offer'>
+      </div>
+    </div>
+
+    <!--<div class='pricing-membership'>-->
+      <!--<h2 class='pricing-membership__title'>Become a Superkid!</h2>-->
+
+      <!--<ul class='pricing-membership__list'>-->
+
+        <!--<li class='pricing-membership__list__card'>-->
+          <!--<h3 class='pricing-membership__list__card__title'>1 Month</h3>-->
+          <!--<ul class='pricing-membership__list__card__list'>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+          <!--</ul>-->
+          <!--<h3 class='pricing-membership__list__card__title2'><span>₹</span>2000</h3>-->
+        <!--</li>-->
+
+        <!--<li class='pricing-membership__list__card'>-->
+          <!--<h3 class='pricing-membership__list__card__title'>3 Months</h3>-->
+          <!--<ul class='pricing-membership__list__card__list'>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+          <!--</ul>-->
+          <!--<h3 class='pricing-membership__list__card__title2'><span>₹</span>2000</h3>-->
+        <!--</li>-->
+
+        <!--<li class='pricing-membership__list__card'>-->
+          <!--<h3 class='pricing-membership__list__card__title'>6 Months</h3>-->
+          <!--<ul class='pricing-membership__list__card__list'>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+          <!--</ul>-->
+          <!--<h3 class='pricing-membership__list__card__title2'><span>₹</span>2000</h3>-->
+        <!--</li>-->
+
+        <!--<li class='pricing-membership__list__card'>-->
+          <!--<h3 class='pricing-membership__list__card__title'>12 Months</h3>-->
+          <!--<ul class='pricing-membership__list__card__list'>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+            <!--<li class='pricing-membership__list__card__title__list__item'>Lorem Ipsum this can be some text</li>-->
+          <!--</ul>-->
+          <!--<h3 class='pricing-membership__list__card__title2'><span>₹</span>2000</h3>-->
+        <!--</li>-->
+
+      <!--</ul>-->
+
+    <!--</div>-->
+
+  </section>
+
+  <section class='contact'>
+    <div id='contact' class='contact__card'>
+
+      <div class='contact__card__col1'>
+        <h1 class='contact__card__col__title'>Contact Us</h1>
+        <div class='contact__card__col__logo'>
+          <img class='contact__card__col__logo__img' src='./images/kidztopiaa-logo2.svg' alt=''>
+        </div>
+      </div>
+
+      <div class='contact__card__col2'>
+        <div class='contact__card__col__content'>
+          <h1 class='contact__card__col__content__title'>Kidztipiaa</h1>
+          <p class='contact__card__col__content__text'>
+            Sarjapur Main Road,
+            <br>
+            Near kodathi gate,
+            <br>
+            beside Shell petrol bunk,
+            <br>
+            Bangalore - 562125, India
+          </p>
+          <h4 class='contact__card__col__content__text__mobile'>+91 9164 395 999</h4>
+          <h4 class='contact__card__col__content__text__mobile'>+91 9900 457 772</h4>
+          <h4 class='contact__card__col__content__text__mobile'>+91 9844 485 546</h4>
+          <h4 class='contact__card__col__content__text__mobile'>080 29 79 5999</h4>
+          <h4 class='contact__card__col__content__text__email'>info@sample.com</h4>
+          <nav class='contact__card__col__content__social'>
+            <a href='#' class='contact__card__col__content__social__link'>
+              <img class='contact__card__col__content__social__link__img' src='./images/icons/kidztopiaa-fb-ico.svg'
+                   alt=''>
+            </a>
+            <a href='#' class='contact__card__col__content__social__link'>
+              <img class='contact__card__col__content__social__link__img' src='./images/icons/kidztopiaa-insta-ico.svg'
+                   alt=''>
+            </a>
+            <a href='#' class='contact__card__col__content__social__link'>
+              <img class='contact__card__col__content__social__link__img'
+                   src='./images/icons/kidztopiaa-twitter-ico.svg' alt=''>
+            </a>
+            <a href='#' class='contact__card__col__content__social__link'>
+              <img class='contact__card__col__content__social__link__img'
+                   src='./images/icons/kidztopiaa-youtube-ico.png' alt=''>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <div class='contact__card__col3'>
+        <div class='contact__card__col__map' id="map"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class='footer clearfix'>
+    <a href='#' class='footer__logo fleft'>
+      <img class='footer__logo__img' src='./images/Kidztopiaa-logo.svg' alt='Kidztopiaa logo'>
+    </a>
+    <h4 class='footer__contact fright'>
+      <span class='footer__contact__icon'>
+        <img class='footer__contact__icon__img' src='./images/icons/kidztopiaa-telephone-ico.svg'
+             alt='Kidztopiaa contact'>
+      </span>
+      <span class='footer__contact__text'>+91 9164 395 999</span>
+    </h4>
+  </footer>
+
+</div>
+<script src='scripts/app.js'></script>
+<!--
+            You need to include this script tag on any page that has a Google Map.
+
+            The following script tag will work when opening this example locally on your computer.
+            But if you use this on a localhost server or a live website you will need to include an API key.
+            Sign up for one here (it's free for small usage):
+                https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+
+            After you sign up, use the following script tag with YOUR_GOOGLE_API_KEY replaced with your actual key.
+        -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyviAZn_iGElFKVUlF9dAXYTo1CdvPePU&callback=initMap" async
+        defer></script>
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyviAZn_iGElFKVUlF9dAXYTo1CdvPePU&callback=initMap"-->
+        <!--type="text/javascript"></script>-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript">
+  // When the window has finished loading create our google map below
+  google.maps.event.addDomListener(window, 'load', init);
+
+  function init() {
+    // Basic options for a simple Google Map
+    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+    var mapOptions = {
+      // How zoomed in you want the map to start at (always required)
+      zoom: 15,
+
+      // The latitude and longitude to center the map (always required)
+      center: new google.maps.LatLng(12.894789, 77.724553), // New York
+
+      // How you would like to style the map.
+      // This is where you would paste any style found on Snazzy Maps.
+      styles: [
+        {
+          'featureType': 'water',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#e9e9e9' }, { 'lightness': 17 }],
+        }, {
+          'featureType': 'landscape',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#f5f5f5' }, { 'lightness': 20 }],
+        }, {
+          'featureType': 'road.highway',
+          'elementType': 'geometry.fill',
+          'stylers': [{ 'color': '#ffffff' }, { 'lightness': 17 }],
+        }, {
+          'featureType': 'road.highway',
+          'elementType': 'geometry.stroke',
+          'stylers': [{ 'color': '#ffffff' }, { 'lightness': 29 }, { 'weight': 0.2 }],
+        }, {
+          'featureType': 'road.arterial',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#ffffff' }, { 'lightness': 18 }],
+        }, {
+          'featureType': 'road.local',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#ffffff' }, { 'lightness': 16 }],
+        }, {
+          'featureType': 'poi',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#f5f5f5' }, { 'lightness': 21 }],
+        }, {
+          'featureType': 'poi.park',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#dedede' }, { 'lightness': 21 }],
+        }, {
+          'elementType': 'labels.text.stroke',
+          'stylers': [{ 'visibility': 'on' }, { 'color': '#ffffff' }, { 'lightness': 16 }],
+        }, {
+          'elementType': 'labels.text.fill',
+          'stylers': [{ 'saturation': 36 }, { 'color': '#333333' }, { 'lightness': 40 }],
+        }, { 'elementType': 'labels.icon', 'stylers': [{ 'visibility': 'off' }] }, {
+          'featureType': 'transit',
+          'elementType': 'geometry',
+          'stylers': [{ 'color': '#f2f2f2' }, { 'lightness': 19 }],
+        }, {
+          'featureType': 'administrative',
+          'elementType': 'geometry.fill',
+          'stylers': [{ 'color': '#fefefe' }, { 'lightness': 20 }],
+        }, {
+          'featureType': 'administrative',
+          'elementType': 'geometry.stroke',
+          'stylers': [{ 'color': '#fefefe' }, { 'lightness': 17 }, { 'weight': 1.2 }],
+        }],
+    };
+
+    // Get the HTML DOM element that will contain your map
+    // We are using a div with id="map" seen below in the <body>
+    var mapElement = document.getElementById('map');
+
+    // Create the Google Map using our element and options defined above
+    var map = new google.maps.Map(mapElement, mapOptions);
+
+    // Let's also add a marker while we're at it
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(12.894789, 77.724553),
+      map: map,
+      title: 'Kidztopiaa!',
+    });
+  }
+</script>
 </body>
 </html>
