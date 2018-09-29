@@ -20,6 +20,7 @@ button {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 ul {
@@ -170,7 +171,7 @@ ul {
 
 .activityBox__heading__nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 0 40px;
   bottom: 22px;
   position: absolute;
@@ -249,7 +250,7 @@ ul {
   align-items: center;
   justify-content: flex-start;
   display: flex;
-  padding-left: 60px;
+  padding: 0 10px 0 60px;
   color: #4C4C4C;
   font-size: 16px;
   font-weight: 400;
@@ -276,6 +277,10 @@ ul {
   transform: translateY(-50%);
 }
 
+.activityBox__content__list__nav__link:last-child {
+  margin-bottom: 40px;
+}
+
 .activityBox__content__description__content {
   width: calc(100% - 560px);
   height: 100%;
@@ -291,6 +296,9 @@ ul {
   margin-top: 35px;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .activityBox__content__description__content__title {
@@ -307,6 +315,7 @@ ul {
   font-weight: 400;
   height: calc(100% - 42px);
   overflow: auto;
+  white-space: pre-line;
 }
 
 .activityBox__content__description__gallery__nav {
@@ -315,15 +324,30 @@ ul {
 }
 
 .activityBox__content__description__gallery__nav__link {
+  position: relative;
   height: 65px;
   width: 85px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin-left: 17px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .activityBox__content__description__gallery__nav__link:first-child {
   margin-left: 0;
+}
+
+.activityBox__content__description__gallery__nav__link.active:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: -3px;
+  top: -3px;
+  border: 3px solid #f76e3c;
+  border-radius: 5px;
 }
 
 .safety__content__heading {
@@ -397,7 +421,8 @@ ul {
 .pricing {
   background: #2DA9F9;
   padding: 110px 80px 0;
-  height: 980px;
+  /*height: 980px;*/
+  height: 800px;
   position: relative;
 }
 
@@ -539,7 +564,8 @@ ul {
 
 .contact {
   background: #BC2B5E;
-  padding: 350px 80px 120px;
+  /*padding: 350px 80px 120px;*/
+  padding: 80px 80px 120px;
 }
 
 .pricing-membership__list__card__title {
@@ -599,7 +625,10 @@ ul {
   padding-right: 40px;
 }
 
-.contact__card__col__content {padding-top: 130px;color: rgba(0, 0, 0, 0.8);}
+.contact__card__col__content {
+  padding-top: 50px;
+  color: rgba(0, 0, 0, 0.8);
+}
 
 .contact__card__col3 {
   width: calc(100% - 300px - 250px);
@@ -638,13 +667,14 @@ ul {
 .contact__card__col__content__text {
   font-size: 20px;
   font-weight: 400;
-  margin-top: 10px;
+  margin: 10px 0 40px 0;
+  line-height: 28px;
 }
 
 .contact__card__col__content__text__mobile {
   font-size: 20px;
   font-weight: 400;
-  margin-top: 40px;
+  margin-bottom: 5px;
 }
 
 .contact__card__col__content__text__email {
